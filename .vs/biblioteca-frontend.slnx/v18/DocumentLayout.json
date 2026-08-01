@@ -1,0 +1,294 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\src\\app\\components\\lista-libri\\lista-libri.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\components\\lista-libri\\lista-libri.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\src\\app\\components\\lista-libri\\lista-libri.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\components\\lista-libri\\lista-libri.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\src\\app\\interceptors\\api-key.interceptor.ts||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\interceptors\\api-key.interceptor.ts||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\src\\main.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\main.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\src\\app\\app.config.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\app.config.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\angular.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:angular.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\src\\app\\services\\libro.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\services\\libro.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\src\\app\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\src\\app\\app.routes.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\app.routes.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\src\\app\\app.spec.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\app.spec.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\src\\app\\app.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\app.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\src\\app\\models\\libro.model.ts||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\models\\libro.model.ts||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\src\\app\\services\\libro.spec.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\services\\libro.spec.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\src\\app\\components\\lista-libri\\lista-libri.spec.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\components\\lista-libri\\lista-libri.spec.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\src\\app\\components\\lista-libri\\lista-libri.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\components\\lista-libri\\lista-libri.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\src\\app\\app.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\app.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": ".gitignore",
+              "DocumentMoniker": "C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\.gitignore",
+              "RelativeDocumentMoniker": ".gitignore",
+              "ToolTip": "C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\.gitignore",
+              "RelativeToolTip": ".gitignore",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-07-31T19:18:57.69Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "app.config.ts",
+              "DocumentMoniker": "C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\src\\app\\app.config.ts",
+              "RelativeDocumentMoniker": "src\\app\\app.config.ts",
+              "ToolTip": "C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\src\\app\\app.config.ts",
+              "RelativeToolTip": "src\\app\\app.config.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-07-30T18:27:51.943Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "angular.json",
+              "DocumentMoniker": "C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\angular.json",
+              "RelativeDocumentMoniker": "angular.json",
+              "ToolTip": "C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\angular.json",
+              "RelativeToolTip": "angular.json",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABgAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-07-30T17:51:45.633Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "main.ts",
+              "DocumentMoniker": "C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\src\\main.ts",
+              "RelativeDocumentMoniker": "src\\main.ts",
+              "ToolTip": "C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\src\\main.ts",
+              "RelativeToolTip": "src\\main.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-07-30T17:51:12.814Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "app.ts",
+              "DocumentMoniker": "C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\src\\app\\app.ts",
+              "RelativeDocumentMoniker": "src\\app\\app.ts",
+              "ToolTip": "C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\src\\app\\app.ts",
+              "RelativeToolTip": "src\\app\\app.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-07-28T12:01:54.753Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "app.html",
+              "DocumentMoniker": "C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\src\\app\\app.html",
+              "RelativeDocumentMoniker": "src\\app\\app.html",
+              "ToolTip": "C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\src\\app\\app.html",
+              "RelativeToolTip": "src\\app\\app.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-07-28T11:59:51.88Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "lista-libri.css",
+              "DocumentMoniker": "C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\src\\app\\components\\lista-libri\\lista-libri.css",
+              "RelativeDocumentMoniker": "src\\app\\components\\lista-libri\\lista-libri.css",
+              "ToolTip": "C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\src\\app\\components\\lista-libri\\lista-libri.css",
+              "RelativeToolTip": "src\\app\\components\\lista-libri\\lista-libri.css",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABsAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-07-28T11:58:46.978Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "lista-libri.html",
+              "DocumentMoniker": "C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\src\\app\\components\\lista-libri\\lista-libri.html",
+              "RelativeDocumentMoniker": "src\\app\\components\\lista-libri\\lista-libri.html",
+              "ToolTip": "C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\src\\app\\components\\lista-libri\\lista-libri.html",
+              "RelativeToolTip": "src\\app\\components\\lista-libri\\lista-libri.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-07-28T11:58:39.778Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "lista-libri.ts",
+              "DocumentMoniker": "C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\src\\app\\components\\lista-libri\\lista-libri.ts",
+              "RelativeDocumentMoniker": "src\\app\\components\\lista-libri\\lista-libri.ts",
+              "ToolTip": "C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\src\\app\\components\\lista-libri\\lista-libri.ts",
+              "RelativeToolTip": "src\\app\\components\\lista-libri\\lista-libri.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-07-28T11:58:00.891Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "app.routes.ts",
+              "DocumentMoniker": "C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\src\\app\\app.routes.ts",
+              "RelativeDocumentMoniker": "src\\app\\app.routes.ts",
+              "ToolTip": "C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\src\\app\\app.routes.ts",
+              "RelativeToolTip": "src\\app\\app.routes.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-07-30T14:17:05.715Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "libro.ts",
+              "DocumentMoniker": "C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\src\\app\\services\\libro.ts",
+              "RelativeDocumentMoniker": "src\\app\\services\\libro.ts",
+              "ToolTip": "C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\src\\app\\services\\libro.ts",
+              "RelativeToolTip": "src\\app\\services\\libro.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-07-28T11:51:30.389Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "api-key.interceptor.ts",
+              "DocumentMoniker": "C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\src\\app\\interceptors\\api-key.interceptor.ts",
+              "RelativeDocumentMoniker": "src\\app\\interceptors\\api-key.interceptor.ts",
+              "ToolTip": "C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\src\\app\\interceptors\\api-key.interceptor.ts",
+              "RelativeToolTip": "src\\app\\interceptors\\api-key.interceptor.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-07-28T13:47:49.464Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "lista-libri.spec.ts",
+              "DocumentMoniker": "C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\src\\app\\components\\lista-libri\\lista-libri.spec.ts",
+              "RelativeDocumentMoniker": "src\\app\\components\\lista-libri\\lista-libri.spec.ts",
+              "ToolTip": "C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\src\\app\\components\\lista-libri\\lista-libri.spec.ts",
+              "RelativeToolTip": "src\\app\\components\\lista-libri\\lista-libri.spec.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-07-28T12:22:10.832Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "app.spec.ts",
+              "DocumentMoniker": "C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\src\\app\\app.spec.ts",
+              "RelativeDocumentMoniker": "src\\app\\app.spec.ts",
+              "ToolTip": "C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\src\\app\\app.spec.ts",
+              "RelativeToolTip": "src\\app\\app.spec.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-07-30T14:16:52.076Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "app.css",
+              "DocumentMoniker": "C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\src\\app\\app.css",
+              "RelativeDocumentMoniker": "src\\app\\app.css",
+              "ToolTip": "C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\src\\app\\app.css",
+              "RelativeToolTip": "src\\app\\app.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-07-30T14:17:10.005Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "libro.spec.ts",
+              "DocumentMoniker": "C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\src\\app\\services\\libro.spec.ts",
+              "RelativeDocumentMoniker": "src\\app\\services\\libro.spec.ts",
+              "ToolTip": "C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\src\\app\\services\\libro.spec.ts",
+              "RelativeToolTip": "src\\app\\services\\libro.spec.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-07-28T11:51:24.695Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "libro.model.ts",
+              "DocumentMoniker": "C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\src\\app\\models\\libro.model.ts",
+              "RelativeDocumentMoniker": "src\\app\\models\\libro.model.ts",
+              "ToolTip": "C:\\Users\\andlupa\\source\\repos\\biblioteca-frontend\\src\\app\\models\\libro.model.ts",
+              "RelativeToolTip": "src\\app\\models\\libro.model.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-07-28T11:40:56.785Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

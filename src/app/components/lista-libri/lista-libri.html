@@ -1,0 +1,26 @@
+<div class="contenitore-libri">
+  <h2>I miei libri</h2>
+
+  @if (caricamento()) {
+  <p>Caricamento in corso...</p>
+  }
+
+  @if (errore()) {
+  <p class="errore">{{ errore() }}</p>
+  }
+
+  @if (!caricamento() && !errore()) {
+  @if (libri().length === 0) {
+  <p>Nessun libro trovato.</p>
+  } @else {
+  <ul class="lista-libri">
+    @for (libro of libri(); track libro.id) {
+    <li class="libro-item">
+      <span class="titolo">{{ libro.titolo }}</span>
+      <span class="autore"> — {{ libro.autore }}</span>
+    </li>
+    }
+  </ul>
+  }
+  }
+</div>
