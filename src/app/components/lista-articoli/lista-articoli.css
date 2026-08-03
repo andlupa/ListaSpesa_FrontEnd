@@ -1,0 +1,175 @@
+.sezione {
+  margin-bottom: 1.5rem;
+}
+
+.etichetta-negozio, .etichetta-categoria {
+  cursor: pointer;
+  background: #f0f0f0;
+  padding: 8px 12px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  user-select: none;
+}
+
+.lista-piatta {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0 0;
+}
+
+.articolo-riga {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 8px;
+  border-bottom: 1px solid #eee;
+}
+
+.form-modifica {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  background: #fffbe6;
+  padding: 14px;
+  border-radius: 6px;
+  border: 1px solid #e6d98a;
+  width: 100%;
+}
+
+.campo-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  width: 220px;
+}
+
+.campo-form label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #7a7264;
+  text-align: left;
+}
+
+.campo-form input,
+.campo-form select {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  text-align: left;
+  width: 100%;
+}
+
+/* Riga doppia: quantità + unità di misura affiancati */
+.riga-doppia {
+  flex-direction: row;
+  gap: 8px;
+  width: 220px;
+}
+
+.sotto-campo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* era flex-end */
+  gap: 4px;
+}
+
+.sotto-campo:first-child {
+  flex: 1;
+}
+
+.sotto-campo:last-child {
+  width: 70px;
+}
+
+.azioni-form {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.azioni-form button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  background: #5b6f4f;
+  color: white;
+  cursor: pointer;
+}
+
+.azioni-form button.secondario {
+  background: #ccc;
+  color: #333;
+}
+
+.nuovo-articolo {
+  color: #7a7264;
+  font-style: italic;
+  cursor: pointer;
+}
+
+  .nuovo-articolo .nome-placeholder {
+    margin-left: 8px;
+  }
+
+.campo-nome {
+  flex: 1;
+  min-width: 120px;
+}
+
+.campo-quantita {
+  width: 50px;
+}
+
+.campo-prezzo, .campo-prezzo-offerta {
+  width: 80px;
+}
+
+.priorita.alta {
+  color: #a1442f;
+}
+
+.priorita.bassa {
+  color: #7a9268;
+}
+
+.campo-negozio {
+  width: 100px;
+}
+
+button.secondario {
+  background: #ccc;
+}
+
+.prezzo-barrato {
+  color: #999;
+  margin-right: 6px;
+}
+
+.prezzo-in-offerta {
+  color: #c0392b;
+  font-weight: 600;
+}
+
+.btn-modifica {
+  margin-left: auto;
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  background: #7a8a9a;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+  .btn-modifica:hover {
+    background: #5f6f7f;
+  }
+
+.errore {
+  color: #a1442f;
+}

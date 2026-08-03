@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-import { ListaLibri } from './components/lista-libri/lista-libri';
+import { ListaArticoli } from './components/lista-articoli/lista-articoli';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ListaLibri],
+  imports: [ListaArticoli],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
-  title = 'biblioteca-frontend';
+  title = 'listaspesa-frontend';
 }
