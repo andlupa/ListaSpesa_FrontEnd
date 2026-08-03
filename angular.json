@@ -30,7 +30,6 @@
               "src/styles.css"
             ]
           },
-
           "configurations": {
             "production": {
               "budgets": [
@@ -53,24 +52,30 @@
                 }
               ]
             },
-            "defaultConfiguration": "production"
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
           },
-          "serve": {
-            "builder": "@angular/build:dev-server",
-            "configurations": {
-              "production": {
-                "buildTarget": "listaspesa_frontend:build:production"
-              },
-              "development": {
-                "buildTarget": "listaspesa_frontend:build:development"
-              }
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular/build:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "listaspesa_frontend:build:production"
             },
-            "defaultConfiguration": "development"
+            "development": {
+              "buildTarget": "listaspesa_frontend:build:development"
+            }
           },
-          "test": {
-            "builder": "@angular/build:unit-test"
-          }
+          "defaultConfiguration": "development"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test"
         }
+      }
     }
   }
 }
