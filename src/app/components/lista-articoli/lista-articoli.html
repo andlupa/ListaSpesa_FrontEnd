@@ -96,9 +96,11 @@
             @if (articolo.priorita === 1) { <span title="Priorità alta">⬆️</span> }
             @if (articolo.priorita === -1) { <span title="Priorità bassa">⬇️</span> }
           </span>
+          @if (articolo['quantità'] > 1) {
           <span class="quantita">
-            x{{ articolo['quantità'] }}{{ articolo.unitaMisura ? ' ' + articolo.unitaMisura : '' }}
+            {{ articolo['quantità'] }}
           </span>
+          }
           <span class="nome">{{ articolo.nomeArticolo }}</span>
           ({{ articolo.unitaMisura ? '' + articolo.unitaMisura : ''}})
           <span class="prezzo">
