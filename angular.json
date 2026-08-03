@@ -18,11 +18,11 @@
           "builder": "@angular/build:application",
           "options": {
             "browser": "src/main.ts",
-            "polyfills": ["zone.js"],
+            "polyfills": [ "zone.js" ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
               {
-                "glob": "**/*" , 
+                "glob": "**/*",
                 "input": "public"
               }
             ],
@@ -30,6 +30,7 @@
               "src/styles.css"
             ]
           },
+
           "configurations": {
             "production": {
               "budgets": [
@@ -44,32 +45,32 @@
                   "maximumError": "8kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ]
             },
-            "development": {
-              "optimization": false,
-              "extractLicenses": false,
-              "sourceMap": true
-            }
+            "defaultConfiguration": "production"
           },
-          "defaultConfiguration": "production"
-        },
-        "serve": {
-          "builder": "@angular/build:dev-server",
-          "configurations": {
-            "production": {
-              "buildTarget": "listaspesa_frontend:build:production"
+          "serve": {
+            "builder": "@angular/build:dev-server",
+            "configurations": {
+              "production": {
+                "buildTarget": "listaspesa_frontend:build:production"
+              },
+              "development": {
+                "buildTarget": "listaspesa_frontend:build:development"
+              }
             },
-            "development": {
-              "buildTarget": "listaspesa_frontend:build:development"
-            }
+            "defaultConfiguration": "development"
           },
-          "defaultConfiguration": "development"
-        },
-        "test": {
-          "builder": "@angular/build:unit-test"
+          "test": {
+            "builder": "@angular/build:unit-test"
+          }
         }
-      }
     }
   }
 }
