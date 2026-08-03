@@ -7,7 +7,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "biblioteca-frontend": {
+    "listaspesa_frontend": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -58,10 +58,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "biblioteca-frontend:build:production"
+              "buildTarget": "listaspesa_frontend:build:production"
             },
             "development": {
-              "buildTarget": "biblioteca-frontend:build:development"
+              "buildTarget": "listaspesa_frontend:build:development"
             }
           },
           "defaultConfiguration": "development"
