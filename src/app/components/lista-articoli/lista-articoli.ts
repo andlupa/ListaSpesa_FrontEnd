@@ -132,9 +132,12 @@ export class ListaArticoli implements OnInit {
 
   // ---- Spunta / togli spunta ----
 
-  // La spunta ora aggiorna subito daComprareSiNo, senza aprire il form
   selezionaArticolo(articolo: Articolo): void {
-    const aggiornato = { ...articolo, daComprareSiNo: true };
+    const aggiornato = {
+      ...articolo,
+      daComprareSiNo: true,
+      categoria: this.trovaCategoria(articolo.idCategoria)
+    };
     this.articoloService.updateArticolo(articolo.idArticolo, aggiornato).subscribe({
       next: () => {
         this.articoli.update(lista =>
@@ -167,23 +170,35 @@ export class ListaArticoli implements OnInit {
     const dati = this.formModifica();
     if (!dati.idArticolo) return;
 
-    this.articoloService.updateArticolo(dati.idArticolo, dati).subscribe({
+    const datiCompleti = {
+      ...dati,
+      categoria: this.trovaCategoria(dati.idCategoria!)
+    };
+
+    this.articoloService.updateArticolo(dati.idArticolo, datiCompleti).subscribe({
       next: () => {
         this.articoli.update(lista =>
-          lista.map(a => a.idArticolo === dati.idArticolo ? { ...a, ...dati } as Articolo : a)
+          lista.map(a => a.idArticolo === dati.idArticolo ? { ...a, ...datiCompleti } as Articolo : a)
         );
         this.idInModifica.set(null);
         this.formModifica.set({});
       },
-      error: () => {
-        this.errore.set('Errore nel salvataggio delle modifiche.');
+      error: (err) => {
+        if (err.status === 409) {
+          this.errore.set('Esiste già un articolo con questo nome.');
+        } else {
+          this.errore.set('Errore nella creazione dell\'articolo.');
+        }
       }
     });
   }
 
-  // Da selezionato a NON selezionato: toggle diretto, nessun form
   togliSelezione(articolo: Articolo): void {
-    const aggiornato = { ...articolo, daComprareSiNo: false };
+    const aggiornato = {
+      ...articolo,
+      daComprareSiNo: false,
+      categoria: this.trovaCategoria(articolo.idCategoria)
+      };
     this.articoloService.updateArticolo(articolo.idArticolo, aggiornato).subscribe({
       next: () => {
         this.articoli.update(lista =>
@@ -204,67 +219,79 @@ export class ListaArticoli implements OnInit {
     this.formModifica.update(f => ({ ...f, [campo]: valore }));
   }
 
-  // Stato per la creazione di un nuovo articolo
-inCreazione = signal(false);
-formNuovo = signal<Partial<Articolo>>({
-  priorita: 0,
-  daComprareSiNo: false,
-  offertaSiNo: false,
-  quantità: 1
-});
-
-iniziaCreazione(): void {
-  this.inCreazione.set(true);
-  this.formNuovo.set({
+    // Stato per la creazione di un nuovo articolo
+  inCreazione = signal(false);
+  formNuovo = signal<Partial<Articolo>>({
     priorita: 0,
-    daComprareSiNo: true,
+    daComprareSiNo: false,
     offertaSiNo: false,
-    quantità: 1,
-    idCategoria: this.categorie()[0]?.idCategoria
+    quantità: 1
   });
-}
 
-annullaCreazione(): void {
-  this.inCreazione.set(false);
-  this.formNuovo.set({});
-}
-
-aggiornaCampoNuovo(campo: keyof Articolo, valore: any): void {
-  if (campo === 'priorita' || campo === 'idCategoria') {
-    valore = Number(valore);
-  }
-  this.formNuovo.update(f => ({ ...f, [campo]: valore }));
-}
-
-offertaValida(articolo: Articolo): boolean {
-  if (articolo.prezzoOfferta == null) return false;
-  if (!articolo.dataScadenzaOfferta) return true;
-
-  const oggi = new Date();
-  oggi.setHours(0, 0, 0, 0);
-
-  const scadenza = new Date(articolo.dataScadenzaOfferta);
-  scadenza.setHours(0, 0, 0, 0);
-
-  return scadenza >= oggi;   // >= invece di > : include il giorno stesso
-}
-
-confermaCreazione(): void {
-  const dati = this.formNuovo();
-  if (!dati.nomeArticolo || !dati.idCategoria) {
-    this.errore.set('Nome articolo e categoria sono obbligatori.');
-    return;
+  iniziaCreazione(): void {
+    this.inCreazione.set(true);
+    this.formNuovo.set({
+      priorita: 0,
+      daComprareSiNo: true,
+      offertaSiNo: false,
+      quantità: 1,
+      idCategoria: this.categorie()[0]?.idCategoria
+    });
   }
 
-  this.articoloService.createArticolo(dati).subscribe({
-    next: (nuovo) => {
-      this.articoli.update(lista => [...lista, nuovo]);
-      this.inCreazione.set(false);
-      this.formNuovo.set({});
-    },
-    error: () => {
-      this.errore.set('Errore nella creazione dell\'articolo.');
+  private trovaCategoria(idCategoria: number): Categoria | undefined {
+    return this.categorie().find(c => c.idCategoria === idCategoria);
+  }
+
+  annullaCreazione(): void {
+    this.inCreazione.set(false);
+    this.formNuovo.set({});
+  }
+
+  aggiornaCampoNuovo(campo: keyof Articolo, valore: any): void {
+    if (campo === 'priorita' || campo === 'idCategoria') {
+      valore = Number(valore);
     }
-  });
-}
+    this.formNuovo.update(f => ({ ...f, [campo]: valore }));
+  }
+
+  offertaValida(articolo: Articolo): boolean {
+    if (articolo.prezzoOfferta == null) return false;
+    if (!articolo.dataScadenzaOfferta) return true;
+
+    const oggi = new Date();
+    oggi.setHours(0, 0, 0, 0);
+
+    const scadenza = new Date(articolo.dataScadenzaOfferta);
+    scadenza.setHours(0, 0, 0, 0);
+
+    return scadenza >= oggi;   // >= invece di > : include il giorno stesso
+  }
+
+  confermaCreazione(): void {
+    const dati = this.formNuovo();
+    if (!dati.nomeArticolo || !dati.idCategoria) {
+      this.errore.set('Nome articolo e categoria sono obbligatori.');
+      return;
+    }
+
+    this.articoloService.createArticolo(dati).subscribe({
+      next: (nuovo) => {
+        const nuovoCompleto = {
+          ...nuovo,
+          categoria: this.trovaCategoria(nuovo.idCategoria)
+        };
+        this.articoli.update(lista => [...lista, nuovoCompleto]);
+        this.inCreazione.set(false);
+        this.formNuovo.set({});
+      },
+      error: (err) => {
+        if (err.status === 409) {
+          this.errore.set('Esiste già un articolo con questo nome.');
+        } else {
+          this.errore.set('Errore nella creazione dell\'articolo.');
+        }
+      }
+    });
+  }
 }

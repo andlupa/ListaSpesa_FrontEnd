@@ -16,34 +16,102 @@
   <section class="sezione">
     <h3>Da comprare</h3>
     <ul class="lista-piatta">
+
+
       @for (articolo of daComprareSenzaNegozio(); track articolo.idArticolo) {
-      <li class="articolo-riga">
-        <input type="checkbox" checked (change)="togliSelezione(articolo)" />
-        <span class="priorita" [class.alta]="articolo.priorita === 1" [class.bassa]="articolo.priorita === -1">
-          @if (articolo.priorita === 1) { <span title="Priorità alta">⬆️</span> }
-          @if (articolo.priorita === -1) { <span title="Priorità bassa">⬇️</span> }
-        </span>
-        @if (articolo.quantità > 1) {
-        <span class="quantita">
-          {{ articolo['quantità'] }}
-        </span>
+
+        @if (idInModifica() === articolo.idArticolo) {
+        <li class="articolo-riga form-modifica">
+          <!-- stesso form completo che hai già nella Sezione 3 -->
+          <div class="campo-form">
+            <label>Categoria</label>
+            <select [ngModel]="formModifica().idCategoria"
+                    (ngModelChange)="aggiornaCampo('idCategoria', $event)">
+              @for (cat of categorie(); track cat.idCategoria) {
+              <option [value]="cat.idCategoria">{{ cat.nomeCategoria }}</option>
+              }
+            </select>
+          </div>
+          <div class="campo-form">
+            <label>Articolo</label>
+            <input type="text" [ngModel]="formModifica().nomeArticolo"
+                   (ngModelChange)="aggiornaCampo('nomeArticolo', $event)" />
+          </div>
+          <div class="campo-form">
+            <label>Priorità</label>
+            <select [ngModel]="formModifica().priorita ?? 0"
+                    (ngModelChange)="aggiornaCampo('priorita', $event)">
+              <option [value]="1">Alta</option>
+              <option [value]="0">Normale</option>
+              <option [value]="-1">Bassa</option>
+            </select>
+          </div>
+          <div class="campo-form riga-doppia">
+            <div class="sotto-campo">
+              <label>Quantità</label>
+              <input type="number" [ngModel]="formModifica()['quantità']"
+                     (ngModelChange)="aggiornaCampo('quantità', $event)" />
+            </div>
+            <div class="sotto-campo">
+              <label>Unità</label>
+              <select [ngModel]="formModifica().unitaMisura"
+                      (ngModelChange)="aggiornaCampo('unitaMisura', $event)">
+                <option [value]="null">—</option>
+                <option value="kg">kg</option>
+                <option value="g">g</option>
+                <option value="l">l</option>
+                <option value="un.">un.</option>
+              </select>
+            </div>
+          </div>
+          <div class="campo-form">
+            <label>Prezzo</label>
+            <input type="number" step="0.01" [ngModel]="formModifica().prezzoNormale"
+                   (ngModelChange)="aggiornaCampo('prezzoNormale', $event)" />
+          </div>
+          <div class="campo-form">
+            <label>Negozio</label>
+            <input type="text" [ngModel]="formModifica().nomeNegozio"
+                   (ngModelChange)="aggiornaCampo('nomeNegozio', $event)" placeholder="Opzionale" />
+          </div>
+          <div class="campo-form">
+            <label>Prezzo offerta</label>
+            <input type="number" step="0.01" [ngModel]="formModifica().prezzoOfferta"
+                   (ngModelChange)="aggiornaCampo('prezzoOfferta', $event)" placeholder="Nessuna offerta" />
+          </div>
+          <div class="campo-form">
+            <label>Scadenza offerta</label>
+            <input type="date" [ngModel]="formModifica().dataScadenzaOfferta"
+                   (ngModelChange)="aggiornaCampo('dataScadenzaOfferta', $event)" />
+          </div>
+          <div class="azioni-form">
+            <button (click)="confermaModifica()">OK</button>
+            <button (click)="annullaModifica()" class="secondario">Annulla</button>
+          </div>
+        </li>
+        } @else {
+        <li class="articolo-riga">
+          <input type="checkbox" checked (change)="togliSelezione(articolo)" />
+          <span class="priorita" [class.alta]="articolo.priorita === 1" [class.bassa]="articolo.priorita === -1">
+            @if (articolo.priorita === 1) { <span title="Priorità alta">⬆️</span> }
+            @if (articolo.priorita === -1) { <span title="Priorità bassa">⬇️</span> }
+          </span>
+          <span class="quantita">
+            x{{ articolo['quantità'] }}{{ articolo.unitaMisura ? ' ' + articolo.unitaMisura : '' }}
+          </span>
+          <span class="nome">{{ articolo.nomeArticolo }}</span>
+          <span class="categoria">{{ articolo.categoria?.nomeCategoria }}</span>
+          <span class="prezzo">
+            @if (offertaValida(articolo)) {
+            <s class="prezzo-barrato">{{ articolo.prezzoNormale | number:'1.2-2' }}€</s>
+            <span class="prezzo-in-offerta">{{ articolo.prezzoOfferta | number:'1.2-2' }}€</span>
+            } @else {
+            {{ articolo.prezzoNormale | number:'1.2-2' }}€
+            }
+          </span>
+          <button class="btn-modifica" (click)="apriModifica(articolo)">Modifica</button>
+        </li>
         }
-        <span class="nome">{{ articolo.nomeArticolo }}</span>
-        <span class="categoria">{{ articolo.categoria?.nomeCategoria }}</span>
-        <span class="prezzo">
-          @if (offertaValida(articolo)) {
-          <s class="prezzo-barrato">{{ articolo.prezzoNormale | number:'1.2-2' }}€</s>
-          <span class="prezzo-in-offerta">{{ articolo.prezzoOfferta | number:'1.2-2' }}€</span>
-          <span class="prezzo-in-offerta"> ({{ articolo.dataScadenzaOfferta | date:'dd-MM-yyyy' }})</span>
-          } @else {
-          {{ articolo.prezzoNormale | number:'1.2-2' }}€
-          }
-        </span>
-        <span class="quantita">
-          ({{ articolo.unitaMisura ? ' ' + articolo.unitaMisura : '' }})
-        </span>
-        <button class="btn-modifica" (click)="apriModifica(articolo)">Modifica</button>
-      </li>
       }
     </ul>
   </section>
@@ -66,11 +134,13 @@
           @if (articolo.priorita === 1) { <span title="Priorità alta">⬆️</span> }
           @if (articolo.priorita === -1) { <span title="Priorità bassa">⬇️</span> }
         </span>
+        @if (articolo['quantità'] > 1) {
         <span class="quantita">
-          x{{ articolo['quantità'] }}{{ articolo.unitaMisura ? ' ' + articolo.unitaMisura : '' }}
+          {{ articolo['quantità'] }}
         </span>
+        }
         <span class="nome">{{ articolo.nomeArticolo }}</span>
-        <span class="categoria">{{ articolo.categoria?.nomeCategoria }}</span>
+        ({{ articolo.unitaMisura ? '' + articolo.unitaMisura : ''}})
         <span class="prezzo">
           @if (offertaValida(articolo)) {
           <s class="prezzo-barrato">{{ articolo.prezzoNormale | number:'1.2-2' }}€</s>
@@ -198,11 +268,13 @@
           @if (articolo.priorita === 1) { <span title="Priorità alta">⬆️</span> }
           @if (articolo.priorita === -1) { <span title="Priorità bassa">⬇️</span> }
         </span>
+        @if (articolo['quantità'] > 1) {
         <span class="quantita">
-          x{{ articolo['quantità'] }}{{ articolo.unitaMisura ? ' ' + articolo.unitaMisura : '' }}
+          {{ articolo['quantità'] }}
         </span>
+        }
         <span class="nome">{{ articolo.nomeArticolo }}</span>
-        <span class="categoria">{{ articolo.categoria?.nomeCategoria }}</span>
+        ({{ articolo.unitaMisura ? '' + articolo.unitaMisura : ''}})
         <span class="prezzo">
           @if (offertaValida(articolo)) {
           <s class="prezzo-barrato">{{ articolo.prezzoNormale | number:'1.2-2' }}€</s>
@@ -225,7 +297,7 @@
     @if (!inCreazione()) {
     <div class="articolo-riga nuovo-articolo">
       <input type="checkbox" (change)="iniziaCreazione()" />
-      <span class="nome-placeholder">Nuovo articolo...</span>
+      <span class="nome-placeholder">NUOVO ARTICOLO...</span>
     </div>
     } @else {
     <div class="articolo-riga form-modifica">

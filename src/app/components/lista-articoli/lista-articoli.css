@@ -108,7 +108,7 @@
 
 .nuovo-articolo {
   color: #7a7264;
-  font-style: italic;
+  font-weight: bold;
   cursor: pointer;
 }
 
@@ -119,6 +119,11 @@
 .campo-nome {
   flex: 1;
   min-width: 120px;
+  font-weight: bold;
+}
+
+.nome {
+  font-weight: bold;
 }
 
 .campo-quantita {
