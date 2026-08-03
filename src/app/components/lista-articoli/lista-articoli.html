@@ -100,7 +100,7 @@
             x{{ articolo['quantità'] }}{{ articolo.unitaMisura ? ' ' + articolo.unitaMisura : '' }}
           </span>
           <span class="nome">{{ articolo.nomeArticolo }}</span>
-          <span class="categoria">{{ articolo.categoria?.nomeCategoria }}</span>
+          ({{ articolo.unitaMisura ? '' + articolo.unitaMisura : ''}})
           <span class="prezzo">
             @if (offertaValida(articolo)) {
             <s class="prezzo-barrato">{{ articolo.prezzoNormale | number:'1.2-2' }}€</s>
