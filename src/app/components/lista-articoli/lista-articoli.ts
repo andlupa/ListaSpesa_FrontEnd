@@ -142,7 +142,7 @@ export class ListaArticoli implements OnInit {
   iniziaCreazione(): void {
     this.inCreazione.set(true);
     this.formNuovo.set({
-      priorita: 0, daComprareSiNo: false, quantità: 1,
+      priorita: 0, daComprareSiNo: true, quantità: 1,
       idCategoria: this.categorie()[0]?.idCategoria
     });
   }
