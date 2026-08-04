@@ -1,0 +1,117 @@
+@if (inModifica()) {
+<li class="articolo-riga form-modifica">
+
+  <div class="campo-form">
+    <label>Categoria</label>
+    <select [ngModel]="form().idCategoria"
+            (ngModelChange)="aggiornaCampo('idCategoria', $event)">
+      @for (cat of categorie; track cat.idCategoria) {
+      <option [value]="cat.idCategoria">{{ cat.nomeCategoria }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="campo-form">
+    <label>Articolo</label>
+    <input type="text"
+           [ngModel]="form().nomeArticolo"
+           (ngModelChange)="aggiornaCampo('nomeArticolo', $event)" />
+  </div>
+
+  <div class="campo-form">
+    <label>Priorità</label>
+    <select [ngModel]="form().priorita ?? 0"
+            (ngModelChange)="aggiornaCampo('priorita', $event)">
+      <option [value]="1">Alta</option>
+      <option [value]="0">Normale</option>
+      <option [value]="-1">Bassa</option>
+    </select>
+  </div>
+
+  <div class="campo-form riga-doppia">
+    <div class="sotto-campo">
+      <label>Quantità</label>
+      <input type="number"
+             [ngModel]="form()['quantità']"
+             (ngModelChange)="aggiornaCampo('quantità', $event)" />
+    </div>
+    <div class="sotto-campo">
+      <label>Unità</label>
+      <select [ngModel]="form().unitaMisura"
+              (ngModelChange)="aggiornaCampo('unitaMisura', $event)">
+        <option [value]="null">—</option>
+        <option value="kg">kg</option>
+        <option value="g">g</option>
+        <option value="l">l</option>
+        <option value="un.">un.</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="campo-form">
+    <label>Prezzo</label>
+    <input type="number" step="0.01"
+           [ngModel]="form().prezzoNormale"
+           (ngModelChange)="aggiornaCampo('prezzoNormale', $event)" />
+  </div>
+
+  <div class="campo-form">
+    <label>Negozio</label>
+    <input type="text"
+           [ngModel]="form().nomeNegozio"
+           (ngModelChange)="aggiornaCampo('nomeNegozio', $event)"
+           placeholder="Opzionale" />
+  </div>
+
+  <div class="campo-form">
+    <label>Prezzo offerta</label>
+    <input type="number" step="0.01"
+           [ngModel]="form().prezzoOfferta"
+           (ngModelChange)="aggiornaCampo('prezzoOfferta', $event)"
+           placeholder="Nessuna offerta" />
+  </div>
+
+  <div class="campo-form">
+    <label>Scadenza offerta</label>
+    <input type="date"
+           [ngModel]="form().dataScadenzaOfferta"
+           (ngModelChange)="aggiornaCampo('dataScadenzaOfferta', $event)" />
+  </div>
+
+  <div class="azioni-form">
+    <button (click)="conferma()">OK</button>
+    <button (click)="annulla()" class="secondario">Annulla</button>
+  </div>
+
+</li>
+} @else {
+<li class="articolo-riga">
+  <input type="checkbox" [checked]="selezionato" (change)="onCheckbox()" />
+  <span class="priorita" [class.alta]="articolo.priorita === 1" [class.bassa]="articolo.priorita === -1">
+    @if (articolo.priorita === 1) { <span title="Priorità alta">⬆️</span> }
+    @if (articolo.priorita === -1) { <span title="Priorità bassa">⬇️</span> }
+  </span>
+  @if (articolo['quantità'] > 1) {
+  <span class="quantita">
+    {{ articolo['quantità'] }}
+  </span>
+  }
+  <span class="nome">{{ articolo.nomeArticolo }}</span>
+  @if (articolo.unitaMisura !== null) {
+  <span class="prezzo">
+    {{ articolo.unitaMisura ? '(' + articolo.unitaMisura + ')' : ''}}
+  </span>
+  }
+  <span class="prezzo">
+    @if (offertaValida()) {
+    <s class="prezzo-barrato">{{ articolo.prezzoNormale | number:'1.2-2' }}€</s>
+    <span class="prezzo-in-offerta">{{ articolo.prezzoOfferta | number:'1.2-2' }}€</span>
+    } @else {
+      @if (articolo.prezzoNormale > 0) {
+      {{ articolo.prezzoNormale | number:'1.2-2' }}€
+      }
+    }
+  </span>
+  <button class="btn-modifica" (click)="apriModifica()">Modifica</button>
+</li>
+}

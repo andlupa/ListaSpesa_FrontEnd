@@ -1,0 +1,121 @@
+.articolo-riga {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 8px;
+  border-bottom: 1px solid #eee;
+}
+
+.nome {
+  font-weight: bold;
+}
+
+.priorita.alta {
+  color: #a1442f;
+}
+
+.priorita.bassa {
+  color: #7a9268;
+}
+
+.prezzo-barrato {
+  color: #999;
+  margin-right: 6px;
+}
+
+.prezzo-in-offerta {
+  color: #c0392b;
+  font-weight: 600;
+}
+
+.btn-modifica {
+  margin-left: auto;
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  background: #7a8a9a;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+  .btn-modifica:hover {
+    background: #5f6f7f;
+  }
+
+.form-modifica {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  background: #fffbe6;
+  padding: 14px;
+  border-radius: 6px;
+  border: 1px solid #e6d98a;
+  width: 100%;
+}
+
+.campo-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  width: 220px;
+}
+
+  .campo-form label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #7a7264;
+  }
+
+  .campo-form input,
+  .campo-form select {
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    width: 100%;
+  }
+
+.riga-doppia {
+  flex-direction: row;
+  gap: 8px;
+  width: 220px;
+}
+
+.sotto-campo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+  .sotto-campo:first-child {
+    flex: 1;
+  }
+
+  .sotto-campo:last-child {
+    width: 70px;
+  }
+
+.azioni-form {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+  .azioni-form button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    background: #5b6f4f;
+    color: white;
+    cursor: pointer;
+  }
+
+    .azioni-form button.secondario {
+      background: #ccc;
+      color: #333;
+    }

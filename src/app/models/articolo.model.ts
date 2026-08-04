@@ -9,7 +9,6 @@ export interface Articolo {
   daComprareSiNo: boolean;
   quantità: number;
   nomeNegozio: string | null;
-  offertaSiNo: boolean;
   prezzoOfferta: number | null;
   dataScadenzaOfferta: string | null;
   priorita: number;              // -1, 0, 1
