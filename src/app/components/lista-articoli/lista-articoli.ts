@@ -37,7 +37,14 @@ export class ListaArticoli implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.categoriaService.getCategorie().subscribe({ next: (data) => this.categorie.set(data) });
+    this.categoriaService.getCategorie().subscribe({
+      next: (data) => {
+        const ordinate = [...data].sort((a, b) =>
+          a.nomeCategoria.localeCompare(b.nomeCategoria)
+        );
+        this.categorie.set(ordinate);
+      }
+    });
     this.caricaArticoli();
   }
 
