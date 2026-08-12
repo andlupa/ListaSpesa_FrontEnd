@@ -23,12 +23,15 @@ export class ListaArticoli implements OnInit {
   caricamento = signal(true);
   errore = signal<string | null>(null);
 
+  inCreazioneCategoria = signal(false);
+  nomeNuovaCategoria = signal('');
+
   negoziEspansi = signal<Set<string>>(new Set());
   categorieEspanse = signal<Set<string>>(new Set());
 
   inCreazione = signal(false);
   formNuovo = signal<Partial<Articolo>>({
-    priorita: 0, daComprareSiNo: false, quantità: 1
+    priorita: 0, daComprareSiNo: true, quantità: 1
   });
 
   constructor(
@@ -179,6 +182,43 @@ export class ListaArticoli implements OnInit {
       },
       error: (err) => {
         this.errore.set(err.status === 409 ? 'Esiste già un articolo con questo nome.' : 'Errore nella creazione.');
+      }
+    });
+  }
+
+  iniziaCreazioneCategoria(): void {
+    this.inCreazioneCategoria.set(true);
+    this.nomeNuovaCategoria.set('');
+  }
+
+  annullaCreazioneCategoria(): void {
+    this.inCreazioneCategoria.set(false);
+    this.nomeNuovaCategoria.set('');
+  }
+
+  confermaCreazioneCategoria(): void {
+    const nome = this.nomeNuovaCategoria().trim();
+    if (!nome) {
+      this.errore.set('Il nome della categoria non può essere vuoto.');
+      return;
+    }
+
+    this.categoriaService.createCategoria({ nomeCategoria: nome }).subscribe({
+      next: (nuova) => {
+        const aggiornate = [...this.categorie(), nuova]
+          .sort((a, b) => a.nomeCategoria.localeCompare(b.nomeCategoria));
+        this.categorie.set(aggiornate);
+
+        // Seleziona automaticamente la categoria appena creata nel form nuovo articolo
+        this.formNuovo.update(f => ({ ...f, idCategoria: nuova.idCategoria }));
+
+        this.inCreazioneCategoria.set(false);
+        this.nomeNuovaCategoria.set('');
+      },
+      error: (err) => {
+        this.errore.set(err.status === 409
+          ? 'Esiste già una categoria con questo nome.'
+          : 'Errore nella creazione della categoria.');
       }
     });
   }

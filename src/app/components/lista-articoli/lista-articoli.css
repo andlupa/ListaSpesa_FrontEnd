@@ -178,3 +178,48 @@ button.secondario {
 .errore {
   color: #a1442f;
 }
+
+.btn-nuova-categoria {
+  margin-top: 4px;
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  background: transparent;
+  color: #5b6f4f;
+  border: 1px dashed #5b6f4f;
+  border-radius: 4px;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+  .btn-nuova-categoria:hover {
+    background: #eef3ea;
+  }
+
+.nuova-categoria-inline {
+  display: flex;
+  gap: 6px;
+  margin-top: 4px;
+  align-items: center;
+}
+
+  .nuova-categoria-inline input {
+    flex: 1;
+    padding: 6px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .nuova-categoria-inline button {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    border: none;
+    border-radius: 4px;
+    background: #5b6f4f;
+    color: white;
+    cursor: pointer;
+  }
+
+    .nuova-categoria-inline button.secondario {
+      background: #ccc;
+      color: #333;
+    }

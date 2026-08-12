@@ -81,12 +81,29 @@
     } @else {
     <div class="articolo-riga form-modifica">
       <div class="campo-form">
-        <label>Categoria</label>
-        <select [ngModel]="formNuovo().idCategoria" (ngModelChange)="aggiornaCampoNuovo('idCategoria', $event)">
-          @for (cat of categorie(); track cat.idCategoria) {
-          <option [value]="cat.idCategoria">{{ cat.nomeCategoria }}</option>
+        <div class="campo-form">
+          <label>Categoria</label>
+          <select [ngModel]="formNuovo().idCategoria" (ngModelChange)="aggiornaCampoNuovo('idCategoria', $event)">
+            @for (cat of categorie(); track cat.idCategoria) {
+            <option [value]="cat.idCategoria">{{ cat.nomeCategoria }}</option>
+            }
+          </select>
+
+          @if (!inCreazioneCategoria()) {
+          <button type="button" class="btn-nuova-categoria" (click)="iniziaCreazioneCategoria()">
+            + Nuova categoria
+          </button>
+          } @else {
+          <div class="nuova-categoria-inline">
+            <input type="text"
+                   [ngModel]="nomeNuovaCategoria()"
+                   (ngModelChange)="nomeNuovaCategoria.set($event)"
+                   placeholder="Nome categoria" />
+            <button type="button" (click)="confermaCreazioneCategoria()">Salva</button>
+            <button type="button" class="secondario" (click)="annullaCreazioneCategoria()">Annulla</button>
+          </div>
           }
-        </select>
+        </div>
       </div>
       <div class="campo-form">
         <label>Articolo</label>
