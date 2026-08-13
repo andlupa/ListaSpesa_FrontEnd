@@ -55,7 +55,10 @@ export class ListaArticoli implements OnInit {
     this.caricamento.set(true);
     this.articoloService.getArticoli().subscribe({
       next: (data) => { this.articoli.set(data); this.caricamento.set(false); },
-      error: () => { this.errore.set('Impossibile caricare gli articoli.'); this.caricamento.set(false); }
+      error: (err) => {
+        this.errore.set(this.formattaErrore(err, 'caricamento degli articoli'));
+        this.caricamento.set(false);
+      }
     });
   }
 
@@ -126,7 +129,7 @@ export class ListaArticoli implements OnInit {
           lista.map(a => a.idArticolo === articolo.idArticolo ? aggiornato : a)
         );
       },
-      error: () => this.errore.set('Errore nell\'aggiornamento.')
+      error: (err) => this.errore.set(this.formattaErrore(err, 'aggiornamento articolo'))
     });
   }
 
@@ -142,7 +145,7 @@ export class ListaArticoli implements OnInit {
         );
       },
       error: (err) => {
-        this.errore.set(err.status === 409 ? 'Esiste già un articolo con questo nome.' : 'Errore nel salvataggio.');
+        this.errore.set(this.formattaErrore(err, 'salvataggio articolo'));
       }
     });
   }
@@ -181,7 +184,7 @@ export class ListaArticoli implements OnInit {
         this.formNuovo.set({});
       },
       error: (err) => {
-        this.errore.set(err.status === 409 ? 'Esiste già un articolo con questo nome.' : 'Errore nella creazione.');
+        this.errore.set(this.formattaErrore(err, 'creazione articolo'));
       }
     });
   }
@@ -216,10 +219,27 @@ export class ListaArticoli implements OnInit {
         this.nomeNuovaCategoria.set('');
       },
       error: (err) => {
-        this.errore.set(err.status === 409
-          ? 'Esiste già una categoria con questo nome.'
-          : 'Errore nella creazione della categoria.');
+        this.errore.set(this.formattaErrore(err, 'creazione categoria'));
       }
     });
+  }
+
+  private formattaErrore(err: any, contesto: string): string {
+    if (err.status === 0) {
+      return `Impossibile contattare il server (${contesto}). Verifica la connessione o che il backend sia attivo.`;
+    }
+    if (err.status === 401) {
+      return `Non autorizzato (${contesto}). Controlla la API Key.`;
+    }
+    if (err.status === 404) {
+      return `Risorsa non trovata (${contesto}).`;
+    }
+    if (err.status === 409) {
+      return err.error?.message || err.error || `Conflitto: elemento già esistente (${contesto}).`;
+    }
+    if (err.status === 500) {
+      return `Errore interno del server (${contesto}). Codice: 500.`;
+    }
+    return `Errore imprevisto (${contesto}). Codice: ${err.status || 'sconosciuto'}.`;
   }
 }
