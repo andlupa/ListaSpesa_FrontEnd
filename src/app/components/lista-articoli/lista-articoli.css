@@ -1,24 +1,82 @@
-.sezione {
-  margin-bottom: 1.5rem;
+.contenitore-lista-spesa {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0px 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #2b2b2b;
 }
+
+  .contenitore-lista-spesa h2 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #e5e7eb;
+  }
+
+.sezione {
+  margin-bottom: 20px;
+}
+
+  .sezione h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #374151;
+    margin: 0 0 8px 0;
+  }
 
 .etichetta-negozio, .etichetta-categoria {
   cursor: pointer;
-  background: #f0f0f0;
-  padding: 8px 12px;
-  border-radius: 4px;
+  background: #f3f4f6;
+  padding: 10px 14px;
+  border-radius: 6px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   user-select: none;
+  font-weight: 600;
+  color: #374151;
+  transition: background 0.15s ease;
+}
+
+  .etichetta-negozio:hover, .etichetta-categoria:hover {
+    background: #e5e7eb;
+  }
+
+.freccia {
+  font-size: 0.75rem;
+  color: #9ca3af;
 }
 
 .lista-piatta {
   list-style: none;
   padding: 0;
   margin: 8px 0 0 0;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.errore {
+  background: #fef2f2;
+  color: #b91c1c;
+  padding: 12px 16px;
+  border-radius: 6px;
+  border: 1px solid #fecaca;
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #e5e7eb;
+  margin: 24px 0;
 }
 
 .articolo-riga {
+  background-color: #f0f7fb;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -29,13 +87,14 @@
 .form-modifica {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-  background: #fffbe6;
-  padding: 14px;
-  border-radius: 6px;
-  border: 1px solid #e6d98a;
+  gap: 14px;
+  background: #eef6fb;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
   width: 100%;
+  box-sizing: border-box; /* importante anche qui */
 }
 
 .campo-form {
@@ -107,14 +166,128 @@
 }
 
 .nuovo-articolo {
-  color: #7a7264;
-  font-weight: bold;
+  color: #6b7280;
+  font-style: italic;
   cursor: pointer;
+  padding: 12px 16px;
+  border: 1px dashed #d1d5db;
+  border-radius: 8px;
+  transition: all 0.15s ease;
 }
+
+  .nuovo-articolo:hover {
+    border-color: #5b6f4f;
+    color: #5b6f4f;
+    background: #f9fafb;
+  }
 
   .nuovo-articolo .nome-placeholder {
     margin-left: 8px;
   }
+
+/* Form nuovo articolo: a piena larghezza, campi impilati */
+.form-modifica {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: #f0f7fb;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  width: 100%;
+}
+
+  /* Fondamentale: uniforma il calcolo delle dimensioni per TUTTI gli elementi del form */
+  .form-modifica * {
+    box-sizing: border-box;
+  }
+
+.campo-form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%; /* piena larghezza invece di 220px */
+}
+
+  .campo-form label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #6b7280;
+  }
+
+  .campo-form input,
+  .campo-form select {
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    width: 100%;
+    box-sizing: border-box; /* garantisce che padding e bordo siano INCLUSI nel 100%, non aggiunti */
+    font-family: inherit; /* select a volte eredita un font diverso dagli input */
+  }
+
+    .campo-form input:focus,
+    .campo-form select:focus {
+      outline: none;
+      border-color: #5b6f4f;
+      box-shadow: 0 0 0 3px rgba(91, 111, 79, 0.1);
+    }
+
+.riga-doppia {
+  flex-direction: row;
+  gap: 12px;
+  width: 100%;
+}
+
+.sotto-campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+  .sotto-campo:first-child {
+    flex: 1;
+  }
+
+  .sotto-campo:last-child {
+    width: 120px;
+  }
+
+.azioni-form {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+  padding-top: 14px;
+  border-top: 1px solid #f3f4f6;
+}
+
+  .azioni-form button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    background: #5b6f4f;
+    color: white;
+    font-weight: 500;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+
+    .azioni-form button:hover {
+      background: #4a5c40;
+    }
+
+    .azioni-form button.secondario {
+      background: #f3f4f6;
+      color: #374151;
+    }
+
+      .azioni-form button.secondario:hover {
+        background: #e5e7eb;
+      }
 
 .campo-nome {
   flex: 1;
@@ -180,46 +353,47 @@ button.secondario {
 }
 
 .btn-nuova-categoria {
-  margin-top: 4px;
-  padding: 4px 10px;
+  margin-top: 6px;
+  padding: 6px 12px;
   font-size: 0.8rem;
   background: transparent;
   color: #5b6f4f;
   border: 1px dashed #5b6f4f;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
   align-self: flex-start;
+  transition: background 0.15s ease;
 }
 
   .btn-nuova-categoria:hover {
-    background: #eef3ea;
+    background: #f0f4ed;
   }
 
 .nuova-categoria-inline {
   display: flex;
-  gap: 6px;
-  margin-top: 4px;
+  gap: 8px;
+  margin-top: 6px;
   align-items: center;
 }
 
   .nuova-categoria-inline input {
     flex: 1;
-    padding: 6px 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 8px 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
   }
 
   .nuova-categoria-inline button {
-    padding: 6px 10px;
-    font-size: 0.8rem;
+    padding: 8px 14px;
+    font-size: 0.85rem;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     background: #5b6f4f;
     color: white;
     cursor: pointer;
   }
 
     .nuova-categoria-inline button.secondario {
-      background: #ccc;
-      color: #333;
+      background: #f3f4f6;
+      color: #374151;
     }
