@@ -11,6 +11,6 @@ export const timeoutInterceptor: HttpInterceptorFn = (req, next) => {
 
   return next(req).pipe(
     timeout(timeoutMs),
-    isPrimaChiamata ? retry({ count: 1, delay: 2000 }) : retry(0)
+    isPrimaChiamata ? retry({ count: 1, delay: 20000 }) : retry(0)
   );
 };
