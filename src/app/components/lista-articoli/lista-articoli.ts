@@ -225,6 +225,9 @@ export class ListaArticoli implements OnInit {
   }
 
   private formattaErrore(err: any, contesto: string): string {
+    if (err.name === 'TimeoutError') {
+      return 'Il server si sta avviando, potrebbe richiedere qualche secondo. Riprova tra poco.';
+    }
     if (err.status === 0) {
       return `Impossibile contattare il server (${contesto}). Verifica la connessione o che il backend sia attivo.`;
     }

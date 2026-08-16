@@ -4,13 +4,14 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { registerLocaleData } from '@angular/common';
 import localeIt from '@angular/common/locales/it';
 import { apiKeyInterceptor } from './interceptors/api-key.interceptor';
+import { timeoutInterceptor } from './interceptors/timeout.interceptor';
 import { routes } from './app.routes';
 
 registerLocaleData(localeIt);
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideHttpClient(withInterceptors([apiKeyInterceptor])),
+    provideHttpClient(withInterceptors([apiKeyInterceptor, timeoutInterceptor])),
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     { provide: LOCALE_ID, useValue: 'it-IT' }
