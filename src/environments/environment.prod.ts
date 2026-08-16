@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://listaspesa-backend.onrender.com/api',
+  apiUrl: 'listaspesa-backend.calmriver-b56a30b9.westeurope.azurecontainerapps.io',
   apiKey: 'ForzaInter'
 };
