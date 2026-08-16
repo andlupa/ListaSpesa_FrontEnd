@@ -2,7 +2,12 @@
   <h2>Lista della spesa</h2>
 
   @if (caricamento()) { <p>Caricamento in corso...</p> }
-  @if (errore()) { <p class="errore">{{ errore() }}</p> }
+  @if (errore()) {
+  <div class="errore">
+    <p>{{ errore() }}</p>
+    <button (click)="caricaArticoli()">Riprova</button>
+  </div>
+  }
 
   @if (!caricamento() && !errore()) {
 
