@@ -1,18 +1,18 @@
 import { HttpInterceptorFn } from '@angular/common/http';
-import { timeout, retry, tap } from 'rxjs/operators';
+import { timeout, retry } from 'rxjs/operators';
 
-let serverPronto = false;
+const AVVIO_APP = Date.now();
+const FINESTRA_AVVIO_MS = 40000; // 40 secondi di "grazia" dal caricamento della pagina
 
 export const timeoutInterceptor: HttpInterceptorFn = (req, next) => {
-  if (serverPronto) {
-    // Il backend ha già risposto con successo almeno una volta: timeout normale
-    return next(req).pipe(timeout(8000));
+  const dentroFinestraAvvio = (Date.now() - AVVIO_APP) < FINESTRA_AVVIO_MS;
+
+  if (dentroFinestraAvvio) {
+    return next(req).pipe(
+      timeout(35000),
+      retry({ count: 1, delay: 3000 })
+    );
   }
 
-  // Il backend potrebbe ancora essere in fase di avvio: timeout lungo + retry
-  return next(req).pipe(
-    timeout(30000),
-    retry({ count: 2, delay: 3000 }),
-    tap(() => { serverPronto = true; })
-  );
+  return next(req).pipe(timeout(8000));
 };
