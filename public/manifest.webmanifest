@@ -1,6 +1,6 @@
 {
-  "name": "Lista Spesa",
-  "short_name": "Lista Spesa",
+  "name": "Shopping List",
+  "short_name": "Shopping List",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

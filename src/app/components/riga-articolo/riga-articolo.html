@@ -2,7 +2,7 @@
 <li class="articolo-riga form-modifica">
 
   <div class="campo-form">
-    <label>Categoria</label>
+    <label>Category</label>
     <select [ngModel]="form().idCategoria"
             (ngModelChange)="aggiornaCampo('idCategoria', $event)">
       @for (cat of categorie; track cat.idCategoria) {
@@ -12,31 +12,31 @@
   </div>
 
   <div class="campo-form">
-    <label>Articolo</label>
+    <label>Product</label>
     <input type="text"
            [ngModel]="form().nomeArticolo"
            (ngModelChange)="aggiornaCampo('nomeArticolo', $event)" />
   </div>
 
   <div class="campo-form">
-    <label>Priorità</label>
+    <label>Priority</label>
     <select [ngModel]="form().priorita ?? 0"
             (ngModelChange)="aggiornaCampo('priorita', $event)">
-      <option [value]="1">Alta</option>
-      <option [value]="0">Normale</option>
-      <option [value]="-1">Bassa</option>
+      <option [value]="1">High</option>
+      <option [value]="0">Normal</option>
+      <option [value]="-1">Low</option>
     </select>
   </div>
 
   <div class="campo-form riga-doppia">
     <div class="sotto-campo">
-      <label>Quantità</label>
+      <label>Quntity</label>
       <input type="number"
              [ngModel]="form()['quantità']"
              (ngModelChange)="aggiornaCampo('quantità', $event)" />
     </div>
     <div class="sotto-campo">
-      <label>Unità</label>
+      <label>Unit Measure</label>
       <select [ngModel]="form().unitaMisura"
               (ngModelChange)="aggiornaCampo('unitaMisura', $event)">
         <option [value]="null">—</option>
@@ -49,38 +49,38 @@
   </div>
 
   <div class="campo-form">
-    <label>Prezzo</label>
+    <label>Price</label>
     <input type="number" step="0.01"
            [ngModel]="form().prezzoNormale"
            (ngModelChange)="aggiornaCampo('prezzoNormale', $event)" />
   </div>
 
   <div class="campo-form">
-    <label>Negozio</label>
+    <label>Shop</label>
     <input type="text"
            [ngModel]="form().nomeNegozio"
            (ngModelChange)="aggiornaCampo('nomeNegozio', $event)"
-           placeholder="Opzionale" />
+           placeholder="Optional" />
   </div>
 
   <div class="campo-form">
-    <label>Prezzo offerta</label>
+    <label>Discount Price</label>
     <input type="number" step="0.01"
            [ngModel]="form().prezzoOfferta"
            (ngModelChange)="aggiornaCampo('prezzoOfferta', $event)"
-           placeholder="Nessuna offerta" />
+           placeholder="No Discount" />
   </div>
 
   <div class="campo-form">
-    <label>Scadenza offerta</label>
+    <label>Discount Expiry Date</label>
     <input type="date"
            [ngModel]="form().dataScadenzaOfferta"
            (ngModelChange)="aggiornaCampo('dataScadenzaOfferta', $event)" />
   </div>
 
   <div class="azioni-form">
-    <button (click)="conferma()">OK</button>
-    <button (click)="annulla()" class="secondario">Annulla</button>
+    <button (click)="conferma()">Save</button>
+    <button (click)="annulla()" class="secondario">Cancel</button>
   </div>
 
 </li>
@@ -112,6 +112,6 @@
       }
     }
   </span>
-  <button class="btn-modifica" (click)="apriModifica()">Modifica</button>
+  <button class="btn-modifica" (click)="apriModifica()">Change</button>
 </li>
 }
