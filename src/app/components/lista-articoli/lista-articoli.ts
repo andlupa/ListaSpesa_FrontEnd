@@ -46,6 +46,9 @@ export class ListaArticoli implements OnInit {
           a.nomeCategoria.localeCompare(b.nomeCategoria)
         );
         this.categorie.set(ordinate);
+      },
+      error: (err) => {
+        this.errore.set(this.formattaErrore(err, 'loading categories'));
       }
     });
     this.caricaArticoli();
@@ -56,7 +59,7 @@ export class ListaArticoli implements OnInit {
     this.articoloService.getArticoli().subscribe({
       next: (data) => { this.articoli.set(data); this.caricamento.set(false); },
       error: (err) => {
-        this.errore.set(this.formattaErrore(err, 'caricamento degli articoli'));
+        this.errore.set(this.formattaErrore(err, 'loading products'));
         this.caricamento.set(false);
       }
     });
@@ -93,7 +96,7 @@ export class ListaArticoli implements OnInit {
     const nonSel = this.articoli().filter(a => !a.daComprareSiNo);
     const mappa = new Map<string, Articolo[]>();
     for (const a of nonSel) {
-      const chiave = a.categoria?.nomeCategoria || 'Senza categoria';
+      const chiave = a.categoria?.nomeCategoria || 'No Category';
       if (!mappa.has(chiave)) mappa.set(chiave, []);
       mappa.get(chiave)!.push(a);
     }
@@ -129,7 +132,7 @@ export class ListaArticoli implements OnInit {
           lista.map(a => a.idArticolo === articolo.idArticolo ? aggiornato : a)
         );
       },
-      error: (err) => this.errore.set(this.formattaErrore(err, 'aggiornamento articolo'))
+      error: (err) => this.errore.set(this.formattaErrore(err, 'update product'))
     });
   }
 
@@ -145,7 +148,7 @@ export class ListaArticoli implements OnInit {
         );
       },
       error: (err) => {
-        this.errore.set(this.formattaErrore(err, 'salvataggio articolo'));
+        this.errore.set(this.formattaErrore(err, 'save product'));
       }
     });
   }
@@ -173,7 +176,7 @@ export class ListaArticoli implements OnInit {
   confermaCreazione(): void {
     const dati = this.formNuovo();
     if (!dati.nomeArticolo || !dati.idCategoria) {
-      this.errore.set('Nome articolo e categoria sono obbligatori.');
+      this.errore.set('Product Name and Category are mandatory.');
       return;
     }
     this.articoloService.createArticolo(dati).subscribe({
@@ -184,7 +187,7 @@ export class ListaArticoli implements OnInit {
         this.formNuovo.set({});
       },
       error: (err) => {
-        this.errore.set(this.formattaErrore(err, 'creazione articolo'));
+        this.errore.set(this.formattaErrore(err, 'create product'));
       }
     });
   }
@@ -202,7 +205,7 @@ export class ListaArticoli implements OnInit {
   confermaCreazioneCategoria(): void {
     const nome = this.nomeNuovaCategoria().trim();
     if (!nome) {
-      this.errore.set('Il nome della categoria non può essere vuoto.');
+      this.errore.set('Category Name is mandatory.');
       return;
     }
 
@@ -219,30 +222,43 @@ export class ListaArticoli implements OnInit {
         this.nomeNuovaCategoria.set('');
       },
       error: (err) => {
-        this.errore.set(this.formattaErrore(err, 'creazione categoria'));
+        this.errore.set(this.formattaErrore(err, 'create category'));
       }
     });
   }
 
   private formattaErrore(err: any, contesto: string): string {
-    if (err.name === 'TimeoutError') {
-      return 'Il server si sta avviando, potrebbe richiedere fino a 30-40 secondi al primo utilizzo. Riprova tra poco.';
+    if (err.name === 'TimeoutError' || err.status === 0) {
+      return 'Server might starting up (after inactivity it may require about 30 seconds).';
     }
     if (err.status === 0) {
-      return `Impossibile contattare il server (${contesto}). Verifica la connessione o che il backend sia attivo.`;
+      return `Impossible to contact the Server (${contesto}). Verify connection.`;
     }
     if (err.status === 401) {
-      return `Non autorizzato (${contesto}). Controlla la API Key.`;
+      return `Not valid Key supplied (${contesto}).`;
     }
     if (err.status === 404) {
-      return `Risorsa non trovata (${contesto}).`;
+      return `Resource not found (${contesto}).`;
     }
     if (err.status === 409) {
-      return err.error?.message || err.error || `Conflitto: elemento già esistente (${contesto}).`;
+      return err.error?.message || err.error || `Conflict: the resource already exists (${contesto}).`;
     }
     if (err.status === 500) {
-      return `Errore interno del server (${contesto}). Codice: 500.`;
+      return `Server internal error (${contesto}). Code: 500.`;
     }
-    return `Errore imprevisto (${contesto}). Codice: ${err.status || 'sconosciuto'}.`;
+    return `Unexpected error (${contesto}). Code: ${err.status || 'sconosciuto'}.`;
+  }
+
+  riconnetti(): void {
+    this.errore.set(null);
+    this.categoriaService.getCategorie().subscribe({
+      next: (data) => {
+        const ordinate = [...data].sort((a, b) => a.nomeCategoria.localeCompare(b.nomeCategoria));
+        this.categorie.set(ordinate);
+      },
+      error: (err) => this.errore.set(this.formattaErrore(err, 'caricamento categorie'))
+    });
+    this.caricaArticoli();
   }
 }
+

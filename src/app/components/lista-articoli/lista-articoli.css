@@ -407,3 +407,37 @@ button.secondario {
   border-radius: 6px;
   cursor: pointer;
 }
+
+.banner-errore {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+  .banner-errore p {
+    margin: 0;
+    color: #b91c1c;
+    font-size: 0.9rem;
+  }
+
+  .banner-errore button {
+    padding: 8px 16px;
+    background: #b91c1c;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: background 0.15s ease;
+  }
+
+    .banner-errore button:hover {
+      background: #991b1b;
+    }
