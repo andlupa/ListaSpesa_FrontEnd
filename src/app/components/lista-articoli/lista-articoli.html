@@ -128,7 +128,7 @@
           <input type="number" [ngModel]="formNuovo()['quantità']" (ngModelChange)="aggiornaCampoNuovo('quantità', $event)" />
         </div>
         <div class="sotto-campo">
-          <label>Unit Measure</label>
+          <label>U.M.</label>
           <select [ngModel]="formNuovo().unitaMisura" (ngModelChange)="aggiornaCampoNuovo('unitaMisura', $event)">
             <option [value]="null">—</option>
             <option value="kg">kg</option>
@@ -145,11 +145,11 @@
       </div>
       <div class="campo-form">
         <label>Shop</label>
-        <input type="text" [ngModel]="formNuovo().nomeNegozio" (ngModelChange)="aggiornaCampoNuovo('nomeNegozio', $event)" placeholder="Opzionale" />
+        <input type="text" [ngModel]="formNuovo().nomeNegozio" (ngModelChange)="aggiornaCampoNuovo('nomeNegozio', $event)" placeholder="Optional" />
       </div>
       <div class="campo-form">
         <label>Discount Price</label>
-        <input type="number" step="0.01" [ngModel]="formNuovo().prezzoOfferta" (ngModelChange)="aggiornaCampoNuovo('prezzoOfferta', $event)" placeholder="Nessuna offerta" />
+        <input type="number" step="0.01" [ngModel]="formNuovo().prezzoOfferta" (ngModelChange)="aggiornaCampoNuovo('prezzoOfferta', $event)" placeholder="No Discount" />
       </div>
       <div class="campo-form">
         <label>Discount Expiry Date</label>
