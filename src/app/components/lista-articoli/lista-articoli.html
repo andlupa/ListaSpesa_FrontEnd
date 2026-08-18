@@ -130,7 +130,7 @@
         <div class="sotto-campo">
           <label>U.M.</label>
           <select [ngModel]="formNuovo().unitaMisura" (ngModelChange)="aggiornaCampoNuovo('unitaMisura', $event)">
-            <option [value]="null">—</option>
+            <option [ngValue]="null">—</option>
             <option value="kg">kg</option>
             <option value="hg">hg</option>
             <option value="g">g</option>

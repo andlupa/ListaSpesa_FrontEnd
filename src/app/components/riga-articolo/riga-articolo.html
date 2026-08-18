@@ -36,10 +36,10 @@
              (ngModelChange)="aggiornaCampo('quantità', $event)" />
     </div>
     <div class="sotto-campo">
-      <label>Unit Measure</label>
+      <label>U.M.</label>
       <select [ngModel]="form().unitaMisura"
               (ngModelChange)="aggiornaCampo('unitaMisura', $event)">
-        <option [value]="null">—</option>
+        <option [ngValue]="null">—</option>
         <option value="kg">kg</option>
         <option value="g">g</option>
         <option value="l">l</option>

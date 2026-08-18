@@ -18,17 +18,15 @@ interface GruppoCategoria { nomeCategoria: string; articoli: Articolo[]; }
   styleUrl: './lista-articoli.css'
 })
 export class ListaArticoli implements OnInit {
+  // dichiaro i signal per l'interfaccia
   articoli = signal<Articolo[]>([]);
   categorie = signal<Categoria[]>([]);
-  caricamento = signal(true);
   errore = signal<string | null>(null);
-
+  caricamento = signal(true);
   inCreazioneCategoria = signal(false);
   nomeNuovaCategoria = signal('');
-
   negoziEspansi = signal<Set<string>>(new Set());
   categorieEspanse = signal<Set<string>>(new Set());
-
   inCreazione = signal(false);
   formNuovo = signal<Partial<Articolo>>({
     priorita: 0, daComprareSiNo: true, quantità: 1
@@ -40,6 +38,7 @@ export class ListaArticoli implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
     this.categoriaService.getCategorie().subscribe({
       next: (data) => {
         const ordinate = [...data].sort((a, b) =>
@@ -51,6 +50,7 @@ export class ListaArticoli implements OnInit {
         this.errore.set(this.formattaErrore(err, 'loading categories'));
       }
     });
+
     this.caricaArticoli();
   }
 
