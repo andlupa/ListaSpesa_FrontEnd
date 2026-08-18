@@ -19,9 +19,9 @@ interface GruppoCategoria { nomeCategoria: string; articoli: Articolo[]; }
 })
 export class ListaArticoli implements OnInit {
   // dichiaro i signal per l'interfaccia
-  articoli = signal<Articolo[]>([]);
-  categorie = signal<Categoria[]>([]);
-  errore = signal<string | null>(null);
+  readonly articoli = signal<Articolo[]>([]);
+  readonly categorie = signal<Categoria[]>([]);
+  readonly errore = signal<string | null>(null);
   caricamento = signal(true);
   inCreazioneCategoria = signal(false);
   nomeNuovaCategoria = signal('');
@@ -38,19 +38,7 @@ export class ListaArticoli implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
-    this.categoriaService.getCategorie().subscribe({
-      next: (data) => {
-        const ordinate = [...data].sort((a, b) =>
-          a.nomeCategoria.localeCompare(b.nomeCategoria)
-        );
-        this.categorie.set(ordinate);
-      },
-      error: (err) => {
-        this.errore.set(this.formattaErrore(err, 'loading categories'));
-      }
-    });
-
+    this.caricaCategorie();
     this.caricaArticoli();
   }
 
@@ -65,34 +53,52 @@ export class ListaArticoli implements OnInit {
     });
   }
 
+  private categoriePerId = computed(() =>
+    new Map(
+      this.categorie().map(c => [c.idCategoria, c])
+    )
+  );
+
   private trovaCategoria(idCategoria: number): Categoria | undefined {
-    return this.categorie().find(c => c.idCategoria === idCategoria);
+    return this.categoriePerId().get(idCategoria);
   }
 
-  daComprareSenzaNegozio = computed(() =>
+  readonly daComprareSenzaNegozio = computed(() =>
     this.articoli().filter(a => a.daComprareSiNo && !a.nomeNegozio)
       .sort((x, y) => y.priorita - x.priorita)
   );
 
-  daComprareConNegozio = computed<GruppoNegozio[]>(() => {
-    const conNegozio = this.articoli().filter(a => a.daComprareSiNo && a.nomeNegozio);
+  readonly daComprareConNegozio = computed<GruppoNegozio[]>(() => {
     const mappa = new Map<string, Articolo[]>();
-    for (const a of conNegozio) {
-      if (!mappa.has(a.nomeNegozio!)) mappa.set(a.nomeNegozio!, []);
-      mappa.get(a.nomeNegozio!)!.push(a);
+
+    for (const articolo of this.articoli()) {
+      if (!articolo.daComprareSiNo || !articolo.nomeNegozio) {
+        continue;
+      }
+
+      const lista = mappa.get(articolo.nomeNegozio) ?? [];
+      lista.push(articolo);
+      mappa.set(articolo.nomeNegozio, lista);
     }
-    return Array.from(mappa.entries())
-      .map(([nomeNegozio, lista]) => ({
+
+    return [...mappa.entries()]
+      .map(([nomeNegozio, articoli]) => ({
         nomeNegozio,
-        articoli: lista.sort((x, y) => {
-          if (y.priorita !== x.priorita) return y.priorita - x.priorita;
-          return (x.categoria?.nomeCategoria || '').localeCompare(y.categoria?.nomeCategoria || '');
+        articoli: [...articoli].sort((a, b) => {
+          if (a.priorita !== b.priorita) {
+            return b.priorita - a.priorita;
+          }
+
+          return (a.categoria?.nomeCategoria ?? '')
+            .localeCompare(b.categoria?.nomeCategoria ?? '');
         })
       }))
-      .sort((a, b) => a.nomeNegozio.localeCompare(b.nomeNegozio));
+      .sort((a, b) =>
+        a.nomeNegozio.localeCompare(b.nomeNegozio)
+      );
   });
 
-  nonSelezionati = computed<GruppoCategoria[]>(() => {
+  readonly nonSelezionati = computed<GruppoCategoria[]>(() => {
     const nonSel = this.articoli().filter(a => !a.daComprareSiNo);
     const mappa = new Map<string, Articolo[]>();
     for (const a of nonSel) {
@@ -168,26 +174,52 @@ export class ListaArticoli implements OnInit {
     this.formNuovo.set({});
   }
 
-  aggiornaCampoNuovo(campo: keyof Articolo, valore: any): void {
-    if (campo === 'priorita' || campo === 'idCategoria') valore = Number(valore);
-    this.formNuovo.update(f => ({ ...f, [campo]: valore }));
+  aggiornaCampoNuovo<K extends keyof Articolo>(
+    campo: K,
+    valore: Articolo[K]
+  ): void {
+    let valoreNormalizzato = valore;
+
+    if (campo === 'priorita' || campo === 'idCategoria') {
+      valoreNormalizzato = Number(valore) as Articolo[K];
+    }
+
+    this.formNuovo.update(f => ({
+      ...f,
+      [campo]: valoreNormalizzato
+    }));
   }
 
   confermaCreazione(): void {
     const dati = this.formNuovo();
-    if (!dati.nomeArticolo || !dati.idCategoria) {
-      this.errore.set('Product Name and Category are mandatory.');
+
+    if (!dati.nomeArticolo?.trim() || dati.idCategoria == null) {
+      this.errore.set(
+        'Product Name and Category are mandatory.'
+      );
       return;
     }
+
+    this.errore.set(null);
+
     this.articoloService.createArticolo(dati).subscribe({
-      next: (nuovo) => {
-        const nuovoCompleto = { ...nuovo, categoria: this.trovaCategoria(nuovo.idCategoria) };
-        this.articoli.update(lista => [...lista, nuovoCompleto]);
-        this.inCreazione.set(false);
-        this.formNuovo.set({});
+      next: nuovo => {
+        const nuovoCompleto: Articolo = {
+          ...nuovo,
+          categoria: this.trovaCategoria(nuovo.idCategoria)
+        };
+
+        this.articoli.update(lista => [
+          ...lista,
+          nuovoCompleto
+        ]);
+
+        this.annullaCreazione();
       },
-      error: (err) => {
-        this.errore.set(this.formattaErrore(err, 'create product'));
+      error: err => {
+        this.errore.set(
+          this.formattaErrore(err, 'create product')
+        );
       }
     });
   }
@@ -228,37 +260,54 @@ export class ListaArticoli implements OnInit {
   }
 
   private formattaErrore(err: any, contesto: string): string {
-    if (err.name === 'TimeoutError' || err.status === 0) {
-      return 'Server might starting up (after inactivity it may require about 30 seconds).';
+    if (err.name === 'TimeoutError') {
+      return 'The server is taking too long to respond.';
     }
+
     if (err.status === 0) {
-      return `Impossible to contact the Server (${contesto}). Verify connection.`;
+      return `Impossible to contact the server (${contesto}). Verify the connection.`;
     }
-    if (err.status === 401) {
-      return `Not valid Key supplied (${contesto}).`;
+
+    switch (err.status) {
+      case 401:
+        return `Unauthorized request (${contesto}).`;
+
+      case 404:
+        return `Resource not found (${contesto}).`;
+
+      case 409:
+        return err.error?.message
+          || err.error
+          || `Conflict (${contesto}).`;
+
+      case 500:
+        return `Internal server error (${contesto}).`;
+
+      default:
+        return `Unexpected error (${contesto}). Code: ${err.status ?? 'unknown'}.`;
     }
-    if (err.status === 404) {
-      return `Resource not found (${contesto}).`;
-    }
-    if (err.status === 409) {
-      return err.error?.message || err.error || `Conflict: the resource already exists (${contesto}).`;
-    }
-    if (err.status === 500) {
-      return `Server internal error (${contesto}). Code: 500.`;
-    }
-    return `Unexpected error (${contesto}). Code: ${err.status || 'sconosciuto'}.`;
+  }
+
+  private caricaCategorie(): void {
+    this.categoriaService.getCategorie().subscribe({
+      next: data => {
+        this.categorie.set(
+          [...data].sort((a, b) =>
+            a.nomeCategoria.localeCompare(b.nomeCategoria)
+          )
+        );
+      },
+      error: err => {
+        this.errore.set(
+          this.formattaErrore(err, 'loading categories')
+        );
+      }
+    });
   }
 
   riconnetti(): void {
     this.errore.set(null);
-    this.categoriaService.getCategorie().subscribe({
-      next: (data) => {
-        const ordinate = [...data].sort((a, b) => a.nomeCategoria.localeCompare(b.nomeCategoria));
-        this.categorie.set(ordinate);
-      },
-      error: (err) => this.errore.set(this.formattaErrore(err, 'caricamento categorie'))
-    });
+    this.caricaCategorie();
     this.caricaArticoli();
   }
 }
-
