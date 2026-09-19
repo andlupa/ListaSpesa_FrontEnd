@@ -42,6 +42,23 @@ export class ListaArticoli implements OnInit {
     this.caricaArticoli();
   }
 
+  private caricaCategorie(): void {
+    this.categoriaService.getCategorie().subscribe({
+      next: data => {
+        this.categorie.set(
+          [...data].sort((a, b) =>
+            a.nomeCategoria.localeCompare(b.nomeCategoria)
+          )
+        );
+      },
+      error: err => {
+        this.errore.set(
+          this.formattaErrore(err, 'loading categories')
+        );
+      }
+    });
+  }
+
   caricaArticoli(): void {
     this.caricamento.set(true);
     this.articoloService.getArticoli().subscribe({
@@ -261,7 +278,7 @@ export class ListaArticoli implements OnInit {
 
   private formattaErrore(err: any, contesto: string): string {
     if (err.name === 'TimeoutError') {
-      return 'The server is taking too long to respond.';
+      return `The server is taking too long to respond (${contesto}).`;
     }
 
     if (err.status === 0) {
@@ -286,23 +303,6 @@ export class ListaArticoli implements OnInit {
       default:
         return `Unexpected error (${contesto}). Code: ${err.status ?? 'unknown'}.`;
     }
-  }
-
-  private caricaCategorie(): void {
-    this.categoriaService.getCategorie().subscribe({
-      next: data => {
-        this.categorie.set(
-          [...data].sort((a, b) =>
-            a.nomeCategoria.localeCompare(b.nomeCategoria)
-          )
-        );
-      },
-      error: err => {
-        this.errore.set(
-          this.formattaErrore(err, 'loading categories')
-        );
-      }
-    });
   }
 
   riconnetti(): void {
